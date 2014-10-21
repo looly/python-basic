@@ -1,0 +1,1583 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>Hello,第一个网页分析：tornado网站的基本结构剖析：improt模块、RequestHandler, HTTPServer, Application, IOLoop | 为什么要开设此栏目</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.0.3">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    
+    <link rel="next" href="./308.html" />
+    
+    
+    <link rel="prev" href="./306.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="gitbook/style.css">
+
+
+        
+    <div class="book"  data-level="4.7" data-basepath="." data-revision="1413856452596">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+    	
+    	
+    	
+
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         第零部分 独上高楼，望尽天涯路
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.1" data-path="001.html">
+            
+                
+                    <a href="./001.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                         唠叨一些关于python的事情
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                         开始本栏目的原因
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         第一部分 积小流，至江海
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1" data-path="101.html">
+            
+                
+                    <a href="./101.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                         Python环境安装
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2" data-path="102.html">
+            
+                
+                    <a href="./102.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         集成开发环境（IDE）
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.3" data-path="103.html">
+            
+                
+                    <a href="./103.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                         数的类型和四则运算
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4" data-path="104.html">
+            
+                
+                    <a href="./104.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                         啰嗦的除法
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.5" data-path="105.html">
+            
+                
+                    <a href="./105.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                         开始真正编程
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.6" data-path="106.html">
+            
+                
+                    <a href="./106.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                         初识永远强大的函数
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.7" data-path="107.html">
+            
+                
+                    <a href="./107.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                         玩转字符串(1)：基本概念、字符转义、字符串连接、变量与字符串关系
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.8" data-path="108.html">
+            
+                
+                    <a href="./108.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.8.</b>
+                        
+                         玩转字符串(2)
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.9" data-path="109.html">
+            
+                
+                    <a href="./109.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.</b>
+                        
+                         玩转字符串(3)
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.10" data-path="110.html">
+            
+                
+                    <a href="./110.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.10.</b>
+                        
+                         眼花缭乱的运算符
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.11" data-path="111.html">
+            
+                
+                    <a href="./111.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.11.</b>
+                        
+                         从if开始语句的征程
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.12" data-path="112.html">
+            
+                
+                    <a href="./112.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.12.</b>
+                        
+                         一个免费的实验室
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.13" data-path="113.html">
+            
+                
+                    <a href="./113.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.13.</b>
+                        
+                         有容乃大的list(1)
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.14" data-path="114.html">
+            
+                
+                    <a href="./114.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.14.</b>
+                        
+                         有容乃大的list(2)
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.15" data-path="115.html">
+            
+                
+                    <a href="./115.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.15.</b>
+                        
+                         有容乃大的list(3)
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.16" data-path="116.html">
+            
+                
+                    <a href="./116.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.16.</b>
+                        
+                         有容乃大的list(4)
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.17" data-path="117.html">
+            
+                
+                    <a href="./117.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.17.</b>
+                        
+                         list和str比较
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.18" data-path="118.html">
+            
+                
+                    <a href="./118.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.18.</b>
+                        
+                         画圈还不简单吗
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.19" data-path="119.html">
+            
+                
+                    <a href="./119.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.19.</b>
+                        
+                         再深点，更懂list
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.20" data-path="120.html">
+            
+                
+                    <a href="./120.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.20.</b>
+                        
+                         字典，你还记得吗？
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.21" data-path="121.html">
+            
+                
+                    <a href="./121.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.21.</b>
+                        
+                         字典的操作方法
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.22" data-path="122.html">
+            
+                
+                    <a href="./122.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.22.</b>
+                        
+                         有点简约的元组
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.23" data-path="123.html">
+            
+                
+                    <a href="./123.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.23.</b>
+                        
+                         一二三,集合了
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.24" data-path="124.html">
+            
+                
+                    <a href="./124.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.24.</b>
+                        
+                         集合的关系
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.25" data-path="125.html">
+            
+                
+                    <a href="./125.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.25.</b>
+                        
+                         Python数据类型总结
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.26" data-path="126.html">
+            
+                
+                    <a href="./126.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.26.</b>
+                        
+                         深入变量和引用对象
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.27" data-path="127.html">
+            
+                
+                    <a href="./127.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.27.</b>
+                        
+                         赋值，简单也不简单
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.28" data-path="128.html">
+            
+                
+                    <a href="./128.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.28.</b>
+                        
+                         坑爹的字符编码
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.29" data-path="129.html">
+            
+                
+                    <a href="./129.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.29.</b>
+                        
+                         做一个小游戏
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.30" data-path="130.html">
+            
+                
+                    <a href="./130.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.30.</b>
+                        
+                         不要红头文件(1): open, write, close
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.31" data-path="131.html">
+            
+                
+                    <a href="./131.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.31.</b>
+                        
+                         不要红头文件(2): os.stat, closed, mode, read, readlines, readline
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         第二部分 穷千里目，上一层楼
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="201.html">
+            
+                
+                    <a href="./201.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         正规地说一句话
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2" data-path="202.html">
+            
+                
+                    <a href="./202.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         print能干的事情
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3" data-path="203.html">
+            
+                
+                    <a href="./203.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                         从格式化表达式到方法
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.4" data-path="204.html">
+            
+                
+                    <a href="./204.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                         复习if语句
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.5" data-path="205.html">
+            
+                
+                    <a href="./205.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                         用while来循环
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.6" data-path="206.html">
+            
+                
+                    <a href="./206.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                         难以想象的for
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.7" data-path="207.html">
+            
+                
+                    <a href="./207.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                         关于循环的小伎俩
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.8" data-path="208.html">
+            
+                
+                    <a href="./208.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                         让人欢喜让人忧的迭代
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.9" data-path="209.html">
+            
+                
+                    <a href="./209.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.9.</b>
+                        
+                         大话题小函数(1)
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.10" data-path="210.html">
+            
+                
+                    <a href="./210.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.10.</b>
+                        
+                         大话题小函数(2)
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.11" data-path="211.html">
+            
+                
+                    <a href="./211.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.11.</b>
+                        
+                         python文档
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.12" data-path="212.html">
+            
+                
+                    <a href="./212.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.</b>
+                        
+                         重回函数
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.13" data-path="213.html">
+            
+                
+                    <a href="./213.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                         变量和参数
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.14" data-path="214.html">
+            
+                
+                    <a href="./214.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                         总结参数的传递
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.15" data-path="215.html">
+            
+                
+                    <a href="./215.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.15.</b>
+                        
+                         传说中的函数条规
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.16" data-path="216.html">
+            
+                
+                    <a href="./216.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.16.</b>
+                        
+                         关于类的基本认识
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.17" data-path="217.html">
+            
+                
+                    <a href="./217.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.17.</b>
+                        
+                         编写类之一创建实例
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.18" data-path="218.html">
+            
+                
+                    <a href="./218.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.18.</b>
+                        
+                         编写类之二方法
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.19" data-path="219.html">
+            
+                
+                    <a href="./219.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.19.</b>
+                        
+                         编写类之三子类
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.20" data-path="220.html">
+            
+                
+                    <a href="./220.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.20.</b>
+                        
+                         编写类之四再论继承
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.21" data-path="221.html">
+            
+                
+                    <a href="./221.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.21.</b>
+                        
+                         命名空间
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.22" data-path="222.html">
+            
+                
+                    <a href="./222.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.22.</b>
+                        
+                         类的细节
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.23" data-path="223.html">
+            
+                
+                    <a href="./223.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.23.</b>
+                        
+                         Import 模块
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.24" data-path="224.html">
+            
+                
+                    <a href="./224.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.24.</b>
+                        
+                         模块的加载
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.25" data-path="225.html">
+            
+                
+                    <a href="./225.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.25.</b>
+                        
+                         私有和专有
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.26" data-path="226.html">
+            
+                
+                    <a href="./226.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.26.</b>
+                        
+                         折腾一下目录: os.path.&lt;attribute&gt;
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         第三部分 昨夜西风，亭台谁登
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.1" data-path="301.html">
+            
+                
+                    <a href="./301.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                         网站的结构：网站组成、MySQL数据库的安装和配置、MySQL的运行
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.2" data-path="302.html">
+            
+                
+                    <a href="./302.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                         通过Python连接数据库：安装python-MySQLdb，连接MySQL
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.3" data-path="303.html">
+            
+                
+                    <a href="./303.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                         用Pyton操作数据库(1)：建立连接和游标，并insert and commit
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.4" data-path="304.html">
+            
+                
+                    <a href="./304.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                         用Python操作数据库（2）
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.5" data-path="305.html">
+            
+                
+                    <a href="./305.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                         用Python操作数据库（3）
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.6" data-path="306.html">
+            
+                
+                    <a href="./306.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                         python开发框架：框架介绍、Tornado安装
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="4.7" data-path="307.html">
+            
+                
+                    <a href="./307.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                         Hello,第一个网页分析：tornado网站的基本结构剖析：improt模块、RequestHandler, HTTPServer, Application, IOLoop
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.8" data-path="308.html">
+            
+                
+                    <a href="./308.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.8.</b>
+                        
+                         实例分析get和post：get()通过URL得到数据和post()通过get_argument()获取数据
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.9" data-path="309.html">
+            
+                
+                    <a href="./309.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.9.</b>
+                        
+                         问候世界：利用GAE建立tornado框架网站
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.10" data-path="311.html">
+            
+                
+                    <a href="./311.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.10.</b>
+                        
+                         使用表单和模板:tornado模板self.render和模板变量传递
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.11" data-path="312.html">
+            
+                
+                    <a href="./312.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.11.</b>
+                        
+                         模板中的语法：tornado模板中的for,if,set等语法，以{%开始，%}语句{%end%}
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         扩展阅读(来自网络文章)
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.1" data-path="reading/01.html">
+            
+                
+                    <a href="./reading/01.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                         人生苦短，我用Python
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Published using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">Twitter</button>
+                <button type="button" data-sharing="google-plus" class="button">Google</button>
+                <button type="button" data-sharing="facebook" class="button">Facebook</button>
+                <button type="button" data-sharing="weibo" class="button">Weibo</button>
+                <button type="button" data-sharing="instapaper" class="button">Instapaper</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >为什么要开设此栏目</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_209">
+                    
+                        <blockquote>
+<p>As he walked by the sea of Galilee, he saw two brothers, Simon, who is called Peter, and Andrew his brother, casting a net into the sea--for they were fishermen. And he said to them,&quot;Follow me, and I will make you fish for people.&quot; Immediately they left their nets and followed him.(MATTHEW 5:18-20)</p>
+</blockquote>
+<h1 id="hello">Hello,第一个网页分析</h1>
+<p>打开文本编辑器。这里要说一下啦，理论上讲，所有的文本编辑器都可以做为编写程序的工具。前面已经提到的那个python IDE，是一个很好的工具，再有别的也行，比如我就用vim（好像我的计算机只能用vim了，上次运行Libre Office都很慢，敲一个键之后喝口水，才看到那个字母出来，等有人资助我了，也搞一个苹果的什么机器玩玩。）。用什么编辑工具，全是自己的喜欢罢了，不用争论那个好，这个差，只要自己顺手即可。</p>
+<p>把下面的代码原封不动地复制过去，并且保存为文件名是hello.py的文件，存到那个目录中，自己选好了。</p>
+<pre><code>#!/usr/bin/env python
+#coding:utf-8
+
+import tornado.httpserver
+import tornado.ioloop
+import tornado.options
+import tornado.web
+
+from tornado.options import define, options
+define(&quot;port&quot;, default=8000, help=&quot;run on the given port&quot;, type=int)
+
+class IndexHandler(tornado.web.RequestHandler):
+    def get(self):
+        greeting = self.get_argument(&#39;greeting&#39;, &#39;Hello&#39;)
+        self.write(greeting + &#39;, welcome you to read: www.itdiffer.com&#39;)
+
+if __name__ == &quot;__main__&quot;:
+    tornado.options.parse_command_line()
+    app = tornado.web.Application(handlers=[(r&quot;/&quot;, IndexHandler)])
+    http_server = tornado.httpserver.HTTPServer(app)
+    http_server.listen(options.port)
+    tornado.ioloop.IOLoop.instance().start()
+</code></pre><p>进入到保存hello.py文件的目录，在shell或者命令输入框（windows可以用cmd）中，输入：</p>
+<pre><code>qw@qw-Latitude-E4300:~/codes$ python hello.py
+</code></pre><p>用python运行这个文件，其实就已经发布了一个网站，只不过这个网站太简单了。</p>
+<p>接下来，打开浏览器，在浏览器中输入：<a href="http://localhost:8000，得到如下界面：" target="_blank">http://localhost:8000，得到如下界面：</a></p>
+<p><img src="../Pictures/30701.png" alt=""></p>
+<p>当然，如果还可以在shell中用下面方式运行：</p>
+<pre><code>qw@qw-Latitude-E4300:~$ curl http://localhost:8000/
+Hello, welcome you to read: www.itdiffer.com 
+
+qw@qw-Latitude-E4300:~$ curl http://localhost:8000/?greeting=Qiwsir
+Qiwsir, welcome you to read: www.itdiffer.com 
+</code></pre><p>如果你的所有操作都正确，一定能够看到上面的结果。</p>
+<p>恭喜你，迈出了决定性一步，已经可以用Tornado发布网站了。在这里似乎没有做什么部署，只是安装了Tornado。是的，不需要如同部署Nginx或者Apache那样，做各种设置了，因为Tornado就是一个很好的server，也是一个开发框架。</p>
+<p>上面代码虽然跑起来了，但是每行都什么意思呢？下面就逐行解释，也就理解了Tornado这个框架的基本结构和用法。</p>
+<h2 id="web">WEB服务器工作流程</h2>
+<p>任何一个网站都离不开Web服务器，这里所说的不是指那个更计算机一样的硬件设备，是指里面安装的软件，有时候初次接触的看官容易搞混。就来伟大的<a href="http://zh.wikipedia.org/wiki/%E6%9C%8D%E5%8A%A1%E5%99%A8" target="_blank">维基百科都这么说</a>：</p>
+<blockquote>
+<p>有时，这两种定义会引起混淆，如Web服务器。它可能是指用于网站的计算机，也可能是指像Apache这样的软件，运行在这样的计算机上以管理网页组件和回应网页浏览器的请求。</p>
+</blockquote>
+<p>在具体的语境中，看官要注意分析，到底指的是什么。</p>
+<p>关于Web服务器比较好的解释，推荐看看百度百科的内容，我这里就不复制粘贴了，具体可以点击连接查阅：<a href="http://baike.baidu.com/view/460250.htm" target="_blank">WEB服务器</a></p>
+<p>在WEB上，用的最多的就是输入网址，访问某个网站。全世界那么多网站网页，如果去访问他们，怎么能够做到彼此互通互联呢。为了协调彼此，就制定了很多通用的协议，其中http协议，就是网络协议中的一种。关于这个协议的介绍，网上随处就能找到，请看官自己google.</p>
+<p>网上偷来的<a href="http://kenby.iteye.com/blog/1159621" target="_blank">一张图</a>（从哪里偷来的，我都告诉你了，多实在呀。哈哈。），显示在下面，简要说明web服务器的工作过程</p>
+<p><img src="../Pictures/30702.png" alt=""></p>
+<p>偷个彻底，把原文中的说明也贴上：</p>
+<ol>
+<li>创建listen socket, 在指定的监听端口, 等待客户端请求的到来</li>
+<li>listen socket接受客户端的请求, 得到client socket, 接下来通过client socket与客户端通信</li>
+<li>处理客户端的请求, 首先从client socket读取http请求的协议头, 如果是post协议, 还可能要读取客户端上传的数据, 然后处理请求, 准备好客户端需要的数据, 通过client socket写给客户端</li>
+</ol>
+<p>剽窃就此结束，下面就自己写了。</p>
+<h2 id="">引入模块</h2>
+<pre><code>import tornado.httpserver
+import tornado.ioloop
+import tornado.options
+import tornado.web
+</code></pre><p>这四个都是Tornado的模块，在本例中都是必须的。它们四个在一般的网站开发中，都要用到，基本作用分别是：</p>
+<ul>
+<li>tornado.httpserver：这个模块就是用来解决web服务器的http协议问题，它提供了不少属性方法，实现客户端和服务器端的互通。Tornado的非阻塞、单线程的特点在这个模块中体现。</li>
+<li>tornado.ioloop：这个也非常重要，能够实现非阻塞socket循环，不能互通一次就结束呀。</li>
+<li>tornado.options：这是命令行解析模块，也常用到。</li>
+<li>tornado.web：这是必不可少的模块，它提供了一个简单的Web框架与异步功能，从而使其扩展到大量打开的连接，使其成为理想的长轮询。</li>
+</ul>
+<p>还有一个模块引入，是用from...import完成的</p>
+<pre><code>from tornado.options import define, options
+define(&quot;port&quot;, default=8000, help=&quot;run on the given port&quot;, type=int)
+</code></pre><p>这两句就显示了所谓“命令行解析模块”的用途了。在这里通过<code>tornado.options.define()</code>定义了访问本服务器的端口，就是当在浏览器地址栏中输入<code>http:localhost:8000</code>的时候，才能访问本网站，因为http协议默认的端口是80，为了区分，我在这里设置为8000,为什么要区分呢？因为我的计算机或许你的也是，已经部署了别的注入Nginx服务器了，它的端口是80,所以要区分开，并且，后面我们还会将tornado和Nginx联合起来工作，这样两个服务器在同一台计算机上，就要分开喽。</p>
+<h2 id="-">定义请求-处理程序类</h2>
+<pre><code>class IndexHandler(tornado.web.RequestHandler):
+    def get(self):
+        greeting = self.get_argument(&#39;greeting&#39;, &#39;Hello&#39;)
+        self.write(greeting + &#39;, welcome you to read: www.itdiffer.com&#39;)
+</code></pre><p>所谓“请求处理”程序类，就是要定义一个类，专门应付客户端向服务器提出请求（这个请求也许是要读取某个网页，也许是要将某些信息存到服务器上），服务器要有相应的程序来接收并处理这个请求，并且反馈某些信息（或者是针对请求反馈所要的信息，或者返回其它的错误信息等）。</p>
+<p>于是，就定义了一个类，名字是IndexHandler，当然，名字可以随便取了，但是，按照习惯，类的名字中的单词首字母都是大写的，并且如果这个类是请求处理程序类，那么就最好用Handler结尾，这样在名称上很明确，是干什么的。</p>
+<p>类IndexHandler的参数是<code>tornado.web.RequestHandler</code>,这个参数很重要，是专门用于完成请求处理程序的，通过它定义<code>get()</code>和<code>post()</code>两个在web中应用最多的方法的内容（关于这两个方法的详细解释，可以参考：<a href="https://github.com/qiwsir/ITArticles/blob/master/Tornado/DifferenceHttpGetPost.md" target="_blank">HTTP GET POST的本质区别详解</a>，作者在这篇文章中，阐述了两个方法的本质）。</p>
+<p>在本例中，只定义了一个<code>get()</code>方法。请看官注意，类中的方法可以没有别的参数，但是必须有<code>self</code>这个参数，关于这点请参与前面几篇关于类的讲授内容（返回<a href="https://github.com/qiwsir/ITArticles/blob/master/BasicPython/index.md" target="_blank">首页</a>找相关文章）。</p>
+<p>在<code>greeting = self.get_argument(&#39;greeting&#39;, &#39;Hello&#39;)</code>这句中，当实例化之后，<code>self</code>对应的就是<code>tornado.web.RequestHandler</code>，而<code>get_argument</code>则是<code>tornado.web.RequestHandler</code>的一个方法。官方文档对这个方法的描述如下：</p>
+<blockquote>
+<p>RequestHandler.get_argument(name, default=, []strip=True)</p>
+<blockquote>
+<p>Returns the value of the argument with the given name.</p>
+<p>If default is not provided, the argument is considered to be required, and we raise a MissingArgumentError if it is missing.</p>
+<p>If the argument appears in the url more than once, we return the last value.</p>
+<p>The returned value is always unicode.</p>
+</blockquote>
+</blockquote>
+<p>这段描述已经很清晰了，此外，看完这段说明，看官是否明白我在前面运行的：</p>
+<pre><code>qw@qw-Latitude-E4300:~$ curl http://localhost:8000/?greeting=Qiwsir
+Qiwsir, welcome you to read: www.itdiffer.com 
+</code></pre><p>为什么通过<code>http://localhost:8000/?greeting=Qiwsir</code>，就可以实现对greeting的赋值。</p>
+<p>接下来的那句<code>self.write(greeting + &#39;,weblcome you to read: www.itdiffer.com)&#39;</code>中，write也是<code>tornado.web.RequestHandler</code>的一个方法，这发方法主要功能是向客户端反馈参数中的信息。也浏览一下官方文档信息，对以后正确理解使用有帮助：</p>
+<blockquote>
+<p>RequestHandler.write(chunk)[source]</p>
+<blockquote>
+<p>Writes the given chunk to the output buffer.</p>
+<p>To write the output to the network, use the flush() method below.</p>
+<p>If the given chunk is a dictionary, we write it as JSON and set the Content-Type of the response to be application/json. (if you want to send JSON as a different Content-Type, call set_header after calling write()).</p>
+</blockquote>
+</blockquote>
+<h2 id="main">main()方法</h2>
+<p><code>if __name__ == &quot;__main__&quot;</code>,从这句话开始执行编写的程序，前面相当于预备工作吧。这个方法跟以往执行python程序是一样的。</p>
+<p><code>tornado.options.parse_command_line()</code>,这是在执行tornado的解析命令行。在tornado的程序中，只要import模块之后，就会在运行的时候自动加载，不需要了解细节，但是，在main（）方法中如果有命令行解析，必须要提前将模块引入。</p>
+<h2 id="application">Application类</h2>
+<p>下面这句是重点：</p>
+<pre><code>app = tornado.web.Application(handlers=[(r&quot;/&quot;, IndexHandler)])
+</code></pre><p>将tornado.web.Application实例化。这个实例化，本质上是建立了整个网站程序的请求处理集合，然后它可以被HTTPServer做为参数调用，实现http协议服务器访问。Application类的<code>__init__</code>方法参数形式：</p>
+<pre><code>def __init__(self, handlers=None, default_host=&quot;&quot;, transforms=None,**settings):
+    pass
+</code></pre><p>在一般情况下，handlers是不能为空的，因为Application类通过这个参数的值处理所得到的请求。例如在本例中，<code>handlers=[(r&quot;/&quot;, IndexHandler)]</code>，就意味着如果通过浏览器的地址栏输入根路径（<code>http://localhost:8000</code>就是根路径，如果是<code>http://localhost:8000/qiwsir</code>，就不属于根，而是一个子路径或目录了），对应这就是让名字为IndexHandler类处理这个请求。</p>
+<p>通过handlers传入的数值格式，一定要注意，在后面做复杂结构的网站是，这里就显得重要了。它一个list，list里面的参数是列表，列表的组成包括两部分，一部分是请求路径，另外一部分是处理程序的类名称。注意请求路径可以用正则表达式书写。举例说明：</p>
+<pre><code>handlers = [
+    (r&quot;/&quot;, IndexHandlers),              #来自根路径的请求用IndesHandlers处理
+    (r&quot;/qiwsir/(.*)&quot;, QiwsirHandlers),  #来自/qiwsir/以及其下任何请求（正则表达式表示任何字符）都由QiwsirHandlers处理
+]
+</code></pre><p><strong>注意</strong></p>
+<p>在这里我使用了<code>r&quot;/&quot;</code>的样式，意味着就不需要使用转义符，r后面的都表示该符号本来的含义。例如，\n，如果单纯这么来使用，就以为着换行，因为符号“\”具有转义功能（关于转义详细阅读<a href="https://github.com/qiwsir/ITArticles/blob/master/BasicPython/107.md" target="_blank">《玩转字符串(1)》</a>），当写成<code>r&quot;\n&quot;</code>的形式是，就不再表示换行了，而是两个字符，\和n，不会转意。一般情况下，由于正则表达式和 \ 会有冲突，因此，当一个字符串使用了正则表达式后，最好在前面加上&#39;r&#39;。（关于正则表达式，看官姑且网上搜索，在后面的课程中，我也会介绍）</p>
+<p>关于Application类的介绍，告一段落，但是并未完全讲述了，因为还有别的参数设置没有讲，看官有兴趣可以阅读官方的文档资料，地址是：<a href="http://tornado.readthedocs.org/en/latest/_modules/tornado/web.html#Application" target="_blank">http://tornado.readthedocs.org/en/latest/_modules/tornado/web.html#Application</a></p>
+<h2 id="httpserver">HTTPServer类</h2>
+<p>实例化之后，Application对象（用app做为标签的）就可以被另外一个类HTTPServer引用，形式为：</p>
+<pre><code>http_server = tornado.httpserver.HTTPServer(app)
+</code></pre><p>HTTPServer是tornado.httpserver里面定义的类。HTTPServer是一个单线程非阻塞HTTP服务器，执行HTTPServer一般要回调Application对象，并提供发送响应的接口,也就是下面的内容是跟随上面语句的（options.port的值在IndexHandler类前面通过from...import..设置的）。</p>
+<pre><code>http_server.listen(options.port)
+</code></pre><p>这种方法，就建立了单进程的http服务。</p>
+<p>请看官牢记，如果在以后编码中，遇到需要多进程，请参考官方文档说明：<a href="http://tornado.readthedocs.org/en/latest/httpserver.html#http-server" target="_blank">http://tornado.readthedocs.org/en/latest/httpserver.html#http-server</a></p>
+<h2 id="ioloop">IOLoop类</h2>
+<p>剩下最后一句了：</p>
+<pre><code>tornado.ioloop.IOLoop.instance().start()
+</code></pre><p>这句话，总是在<code>__main()__</code>的最后一句。表示可以接收来自HTTP的请求了。</p>
+<p>以上把一个简单的hello.py剖析。想必读者对Tornado编写网站的基本概念已经有了。</p>
+<hr>
+
+<p><a href="https://github.com/qiwsir/ITArticles/blob/master/BasicPython/index.md" target="_blank">首页</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="https://github.com/qiwsir/ITArticles/blob/master/BasicPython/306.md" target="_blank">上一讲：PYthon框架</a></p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./306.html" class="navigation navigation-prev " aria-label="Previous page: python开发框架：框架介绍、Tornado安装"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./308.html" class="navigation navigation-next " aria-label="Next page: 实例分析get和post：get()通过URL得到数据和post()通过get_argument()获取数据"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
