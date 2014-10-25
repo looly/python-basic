@@ -1,9 +1,9 @@
 # Summary
 
-* [第零部分 独上高楼，望尽天涯路](README.md)
+* [第零部分 独上高楼，望尽天涯路](blank.md)
    * [唠叨一些关于python的事情](001.md)
    * [开始本栏目的原因](README.md)
-* [第一部分 积小流，至江海](README.md)
+* [第一部分 积小流，至江海](blank.md)
    * [Python环境安装](101.md)
    * [集成开发环境（IDE）](102.md)
    * [数的类型和四则运算](103.md)
@@ -35,7 +35,7 @@
    * [做一个小游戏](129.md)
    * [不要红头文件(1): open, write, close](130.md)
    * [不要红头文件(2): os.stat, closed, mode, read, readlines, readline](131.md)
-* [第二部分 穷千里目，上一层楼](README.md)
+* [第二部分 穷千里目，上一层楼](blank.md)
    * [正规地说一句话](201.md)
    * [print能干的事情](202.md)
    * [从格式化表达式到方法](203.md)
@@ -62,7 +62,7 @@
    * [模块的加载](224.md)
    * [私有和专有](225.md)
    * [折腾一下目录: os.path.<attribute>](226.md)
-* [第三部分 昨夜西风，亭台谁登](README.md)
+* [第三部分 昨夜西风，亭台谁登](blank.md)
    * [网站的结构：网站组成、MySQL数据库的安装和配置、MySQL的运行](301.md)
    * [通过Python连接数据库：安装python-MySQLdb，连接MySQL](302.md)
    * [用Pyton操作数据库(1)：建立连接和游标，并insert and commit](303.md)
@@ -75,5 +75,5 @@
    * [使用表单和模板:tornado模板self.render和模板变量传递](311.md)
    * [模板中的语法：tornado模板中的for,if,set等语法，以{%开始，%}语句{%end%}](312.md)* 
    * [静态文件以及一个项目框架](313.md)
-* [扩展阅读(来自网络文章)](README.md)
+* [扩展阅读(来自网络文章)](blank.md)
    * [人生苦短，我用Python](reading/01.md)
