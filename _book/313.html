@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>玩转字符串(1)：基本概念、字符转义、字符串连接、变量与字符串关系 | 声明</title>
+        <title>静态文件以及一个项目框架 | 声明</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -18,10 +18,10 @@
     
     
     
-    <link rel="next" href="./108.html" />
+    <link rel="next" href="./index.html" />
     
     
-    <link rel="prev" href="./106.html" />
+    <link rel="prev" href="./312.html" />
     
 
         
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="1.7" data-basepath="." data-revision="1414225796409">
+    <div class="book"  data-level="3.12" data-basepath="." data-revision="1414225796409">
     
 
 <div class="book-summary">
@@ -216,7 +216,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="1.7" data-path="107.html">
+        <li class="chapter " data-level="1.7" data-path="107.html">
             
                 
                     <a href="./107.html">
@@ -1252,7 +1252,7 @@
         </li>
     
         
-        <li class="chapter " data-level="3.12" data-path="313.html">
+        <li class="chapter active" data-level="3.12" data-path="313.html">
             
                 
                     <a href="./313.html">
@@ -1399,179 +1399,214 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_255">
+                    <section class="normal" id="section-gitbook_317">
                     
-                        <h1 id="1">玩转字符串(1)</h1>
-<p>如果对自然语言分类，有很多中分法，比如英语、法语、汉语等，这种分法是最常见的。在语言学里面，也有对语言的分类方法，比如什么什么语系之类的。我这里提出一种分法，这种分法尚未得到广大人民群众和研究者的广泛认同，但是，我相信那句“真理是掌握在少数人的手里”，至少在这里可以用来给自己壮壮胆。</p>
-<p>我的分法：一种是语言中的两个元素（比如两个字）和在一起，出来一个新的元素（比如新的字）；另外一种是两个元素和在一起，知识两个元素并列。比如“好”和“人”，两个元素和在一起是“好人”，而3和5和在一起是8，如果你认为是35，那就属于第二类和法了。</p>
-<p>把我的这种分法抽象一下：</p>
-<ul>
-<li>一种是：△ + □  = ○</li>
-<li>另外一种是：△ + □  = △ □</li>
-</ul>
-<p>我们的语言中，离不开以上两类，不是第一类就是第二类。</p>
-<p>太天才了。请鼓掌。</p>
-<h2 id="">字符串</h2>
-<p>在我洋洋自得的时候，我google了一下，才发现，自己没那么高明，看<a href="http://zh.wikipedia.org/wiki/%E5%AD%97%E7%AC%A6%E4%B8%B2" target="_blank">维基百科的字符串词条</a>是这么说的：</p>
-<blockquote>
-<p>字符串（String），是由零个或多个字符组成的有限串行。一般记为s=a[1]a[2]...a[n]。</p>
+                        <blockquote>
+<p>&quot;just as the Son of Man came not to be served but to serve, and to give his life a ransom for many.&quot;(MATTHEW:20:28)</p>
 </blockquote>
-<p>看到维基百科的伟大了吧，它已经把我所设想的一种情况取了一个形象的名称，叫做字符串</p>
-<p>根据这个定义，在前面两次让一个程序员感到伟大的&quot;Hello,World&quot;，就是一个字符串。或者说不管用英文还是中文还是别的某种问，写出来的文字都可以做为字符串对待，当然，里面的特殊符号，也是可以做为字符串的，比如空格等。</p>
-<p>操练一下字符串吧。</p>
-<pre><code>&gt;&gt;&gt; print &quot;good good study, day day up&quot;
-good good study, day day up
-&gt;&gt;&gt; print &quot;----good---study---day----up&quot;
-----good---study---day----up
-</code></pre><p>在print后面，打印的都是字符串。注意，是双引号里面的，引号不是字符串的组成部分。它是在告诉计算机，它里面包裹着的是一个字符串。也就是在python中，通常用一对双引号、或者单引号来包裹一个字符串。或者说，要定义一个字符串，就用双引号或者单引号。</p>
-<p>爱思考的看官肯定发现上面这句话有问题了。如果我要把下面这句话看做一个字符串，应该怎么做？</p>
-<pre><code>小明说&quot;我没有烧圆明园&quot;
-</code></pre><p>或者这句</p>
-<pre><code>What&#39;s your name?
-</code></pre><p>问题非常好，有道理。在python中有一种方法专门解决类似的问题。看下面的例子：</p>
-<pre><code>&gt;&gt;&gt; print &quot;小明说：\&quot;我没有少圆明园\&quot;&quot;
-小明说&quot;我没有少圆明园&quot;
-</code></pre><p>这个例子中，为了打印出那句含有双引号的字符串，也就是双引号是字符串的一部分了，使用了一个符号：\，在python中，将这个符号叫做转义符。本来双引号表示包括字符串，它不是字符串一部分，但是如果前面有转义符，那么它就失去了原来的含义，转化为字符串的一部分，相当于一个特殊字符了。</p>
-<p>下面用转义符在打印第二句话：</p>
-<pre><code>&gt;&gt;&gt; print &#39;what\&#39;s your name?&#39;
-what&#39;s your name?
-</code></pre><p>另外，双引号和单引号还可以嵌套，比如下面的句子中，单引号在双引号里面，虽然没有在单引号前面加转义符，但是它被认为是字符串一部分，而不是包裹字符串的符号</p>
-<pre><code>&gt;&gt;&gt; print &quot;what&#39;s your name?&quot;   #双引号包裹单引号，单引号是字符
-what&#39;s your name?
-&gt;&gt;&gt; print &#39;what &quot;is your&quot; name&#39; #单引号包裹双引号，双引号是字符
-what &quot;is your&quot; name
-</code></pre><h2 id="">变量连接到字符串</h2>
-<p>前面讲过变量了，并且有一个钓鱼的比喻。如果忘记了，请看前一章内容。</p>
-<p>其实，变量不仅可以跟数字连接，还能够跟字符串连接。</p>
-<pre><code>&gt;&gt;&gt; a=5
-&gt;&gt;&gt; a
-5
-&gt;&gt;&gt; print a
-5
-&gt;&gt;&gt; b=&quot;hello,world&quot;
-&gt;&gt;&gt; b
-&#39;hello,world&#39;
-&gt;&gt;&gt; print b
-hello,world
-</code></pre><p>还记得我们曾经用过一个type命令吗？现在它还有用，就是检验一个变量，到底跟什么类型联系着，是字符串还是数字？</p>
-<pre><code>&gt;&gt;&gt; type(a)
-&lt;type &#39;int&#39;&gt;
-&gt;&gt;&gt; type(b)
-&lt;type &#39;str&#39;&gt;
-</code></pre><p>程序员们经常用一种简单的说法，把a称之为数字型变量，意思就是它能够或者已经跟数字连着呢；把b叫做字符（串）型变量，意思就是它能够或者已经跟字符串连着呢。</p>
-<h2 id="">对字符串的简单操作</h2>
-<p>对数字，有一些简单操作，比如四则运算就是，如果3+5，就计算出为8。那么对字符串都能进行什么样的操作呢？试试吧：</p>
-<pre><code>&gt;&gt;&gt; &quot;py&quot;+&quot;thon&quot;
-&#39;python&#39;
-</code></pre><p>跟我那个不为大多数人认可的发现是一样的，你还不认可吗？两个字符串相加，就相当于把两个字符串连接起来。(别的运算就别尝试了，没什么意义，肯定报错，不信就试试）</p>
-<pre><code>&gt;&gt;&gt; &quot;py&quot;-&quot;thon&quot;
-Traceback (most recent call last):
-  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-  TypeError: unsupported operand type(s) for -: &#39;str&#39; and &#39;str&#39;
-</code></pre><p>以上就是对字符串的第一种操作。</p>
-<h3 id="">连接字符串</h3>
-<ul>
-<li>方法1：</li>
-</ul>
-<p>在IDLE中按照下面方法操作</p>
-<pre><code>&gt;&gt;&gt; a = &quot;老齐&quot;
-&gt;&gt;&gt; b= &quot;教python&quot;
-&gt;&gt;&gt; c = a+b
-&gt;&gt;&gt; print c
-老齐教python
-&gt;&gt;&gt; c
-&#39;\xe8\x80\x81\xe9\xbd\x90\xe6\x95\x99python&#39;
-</code></pre><p>这是一种最简单连接两个字符串的方法。注意上面例子的最后一行，怎么出现乱码了？那不是乱码，是字符编码的问题。这个你权当没看见好了。不过的确是看见了。请看官google字符编码就知道了。这里推荐一篇非常好的文章：<a href="http://www.cnblogs.com/skynet/archive/2011/05/03/2035105.html" target="_blank">字符集和字符编码</a></p>
-<blockquote>
-<blockquote>
-<p>老齐提示：看官做为学习者，一定要对所学的对象有一种好奇心，比如上面例子中，如果你满足于print c，发现结果跟自己所预料一样，这还远远不够。如果你向下走了一行，就发现一个怪怪的结果了，这就让你在编程路上又前进一大步。所以，要有对世界好奇的心，不断探索、思考和尝试。反正在计算机上尝试，也没有多大成本。最坏的结果是关掉IDLE罢了。</p>
-</blockquote>
-</blockquote>
-<p>对字符串的简单操作暂且到这里，下一篇文章继续，还没完，请明天再来。</p>
-<h2 id="python">Python转义字符</h2>
-<p>在字符串中，有时需要输入一些特殊的符号，但是，某些符号不能直接输出，就需要用转义符。所谓转义，就是不采用符号现在之前的含义，而采用另外一含义了。下面表格中列出常用的转义符：</p>
-<table>
-<thead>
-<tr>
-<th>转义字符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\</td>
-<td>(在行尾时) 续行符</td>
-</tr>
-<tr>
-<td>\</td>
-<td>反斜杠符号</td>
-</tr>
-<tr>
-<td>\&#39;</td>
-<td>单引号</td>
-</tr>
-<tr>
-<td>\&quot;</td>
-<td>双引号</td>
-</tr>
-<tr>
-<td>\a</td>
-<td>响铃</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>退格(Backspace)</td>
-</tr>
-<tr>
-<td>\e</td>
-<td>转义</td>
-</tr>
-<tr>
-<td>\000</td>
-<td>空</td>
-</tr>
-<tr>
-<td>\n</td>
-<td>换行</td>
-</tr>
-<tr>
-<td>\v</td>
-<td>纵向制表符</td>
-</tr>
-<tr>
-<td>\t</td>
-<td>横向制表符</td>
-</tr>
-<tr>
-<td>\r</td>
-<td>回车</td>
-</tr>
-<tr>
-<td>\f</td>
-<td>换页</td>
-</tr>
-<tr>
-<td>\oyy</td>
-<td>八进制数，yy代表的字符，例如：\o12代表换行</td>
-</tr>
-<tr>
-<td>\xyy</td>
-<td>十六进制数，yy代表的字符，例如：\x0a代表换行</td>
-</tr>
-<tr>
-<td>\other</td>
-<td>其它的字符以普通格式输出</td>
-</tr>
-</tbody>
-</table>
-<p>以上所有转义符，都可以通过交互模式下print来测试一下，感受实际上是什么样子的。例如：</p>
-<pre><code>&gt;&gt;&gt; print &quot;hello.I am qiwsir.\                  #这里换行，下一行接续
-... My website is &#39;http://qiwsir.github.io&#39;.&quot;
-hello.I am qiwsir.My website is &#39;http://qiwsir.github.io&#39;.
+<h1 id="">静态文件以及一个项目框架</h1>
+<p>在网上浏览网页，由于现在网速也快了，大概你很少注意网页中那些所谓的静态文件。怎么找出来静态文件呢？</p>
+<p>如果使用firefox(我特别向列位推荐这个浏览器，它是我认为的最好的浏览器，没有之一。哈哈。“你信不信？反正我信了。”)，可以通过firebug组件，来研究网页的代码，当然，你直接看源码也行。</p>
+<p><img src="https://raw.githubusercontent.com/qiwsir/ITArticles/master/Pictures/31301.png" alt=""></p>
+<p>上图中，我打开了一个对天朝很多人来说不存在的网站，并且通过Firebug查看其源码，打开<code>&lt;head&gt;</code>，发现里面有不少<code>&lt;script</code>和<code>&lt;link</code>开始引入的文件，这些文件一部分是javascript文件，一部分是css文件。在一个网站中，这类文件一般是不会发生变化的，也就是它的内容稳定，直到下次文件管理员或者有权限的人修改时。而网站程序本身一般不会修改它们。因此将他们称之为<strong>静态文件</strong>。</p>
+<p>此外，网站中的<strong>静态文件</strong>还包括一些图片，比如logo，以及做为边框的图片等。</p>
+<p>在tornado中，有专门方法处理这些静态文件。</p>
+<h2 id="">静态路径</h2>
+<p>看官是否还记得在前面写过这个模样的代码：<code>template_path=os.path.join(os.path.dirname(__file__), &quot;templates&quot;)</code>，这里是设置了模板的路径，放置模板的目录名称是<code>templates</code>。类似的方法，我们也可以设置好静态文件的路径。</p>
+<pre><code>static_path=os.path.join(os.path.dirname(__file__), &quot;static&quot;)
+</code></pre><p>这里的设置，就是将所有的静态文件，放在了<code>static</code>目录中。</p>
+<p>这样就设置了静态路径。</p>
+<p>下面的代码是将<a href="312.html">上一节</a>的代码进行了改写，注意变化的地方</p>
+<pre><code>#! /usr/bin/env python
+#-*- coding:utf-8 -*-
 
-&gt;&gt;&gt; print &quot;you can connect me by qq\\weibo\\gmail&quot;  #\\是为了要后面那个\
-you can connect me by qq\weibo\gmail
-</code></pre><p>看官自己试试吧。如果有问题，可以联系我解答。</p>
+import os.path
+import tornado.httpserver
+import tornado.ioloop
+import tornado.web
+import tornado.options
+
+from tornado.options import define, options
+define(&quot;port&quot;, default=8000, help=&quot;run on the given port&quot;, type=int)
+
+class IndexHandler(tornado.web.RequestHandler):
+    def get(self):
+        lst = [&quot;python&quot;,&quot;www.itdiffer.com&quot;,&quot;qiwsir@gmail.com&quot;]
+        self.render(&quot;index.html&quot;, info=lst)
+
+handlers = [(r&quot;/&quot;, IndexHandler),]
+
+template_path = os.path.join(os.path.dirname(__file__), &quot;temploop&quot;)
+static_path = os.path.join(os.paht.dirname(__file__), &quot;static&quot;)    #这里增加设置了静态路径
+
+if __name__ == &quot;__main__&quot;:
+    tornado.options.parse_command_line()
+    app = tornado.web.Application(handlers, template_path, static_path, debug=True)   #这里也多了点
+    http_server = tornado.httpserver.HTTPServer(app)
+    http_server.listen(options.port)
+    tornado.ioloop.IOLoop.instance().start()
+</code></pre><p>上面的代码比前一讲中，多了两处，一处是定义了静态文件路径<code>static_path</code>，在这里将存储静态文件的目录命名为<code>static</code>。另外一个修改就是在实例化<code>tornado.web.Application()</code>的时候，在参数中，出了有静态路径参数<code>static_path</code>，还有一个参数设置<code>debug=True</code>，这个参数设置的含义是当前的tornado服务器可以不用重启，就能够体现已经修改的代码功能。回想一下，在前面进行调试的时候，是不是每次如果修改了代码，就得重启tornado服务器，才能看到修改效果。用了这个参数就不用这么麻烦了。</p>
+<p>特别说着，<code>debug=True</code>仅仅用于开发的调试过程中，如果在生产部署的时候，就不要这么使用了。</p>
+<h2 id="">编写模板文件</h2>
+<p>我们设置静态路径的目的就是要在模板中引入css和js等类型的文件以及图片等等。那么如何引入呢，下面以css为例说明。</p>
+<p>在一般网页的<code>&lt;head&gt;...&lt;/head&gt;</code>部分，都会引入CSS，例如下面的写法不少网站都愿意引用google的字体库，样式如下：</p>
+<pre><code>&lt;link href=&#39;http://fonts.googleapis.com/css?family=Open+Sans:300,400,600&amp;subset=latin,latin-ext&#39; rel=&#39;stylesheet&#39;&gt;
+</code></pre><p>这就是CSS的引入。</p>
+<p>但是，如果看官在墙内也这么引入字体库，希望自己的网页上能使用，那就有点麻烦了，因为google的这个项目已经不行被墙，如果在网页中写了上面代码，会导致网页打开速度很慢，有的甚至出错。</p>
+<p>怎么办？那就不用啦。不过，国内有好心网站做了整个谷歌字体的代理，可以用下面方式，墙里面就不怕了。</p>
+<pre><code>&lt;link href=&#39;http://fonts.useso.com/css?family=Open+Sans:300,400,600&amp;subset=latin,latin-ext&#39; rel=&#39;stylesheet&#39;&gt;
+</code></pre><p>顺便提供一个墙内的常用前端库地址：<a href="http://libs.useso.com/，供看官参考使用。" target="_blank">http://libs.useso.com/，供看官参考使用。</a></p>
+<p>那么如果我自己写CSS呢？并且按照前面的设定，已经将该CSS文件放在了static目录里面，命名为style.css，就可以这样引入</p>
+<pre><code>&lt;link href=&quot;/static/style.css&quot; rel=&quot;stylesheet&quot;&gt;
+</code></pre><p>但是，这里往往会有一个不方便的地方，如果我手闲着无聊，或者因为别的充足理由，将存储静态文件的目录static换成了sta，并且假设我已经在好几个模板中都已经写了上面的代码。接下来我就要把这些文件全打开，一个一个更改<code>&lt;link&gt;</code>里面的地址。</p>
+<p>请牢记，凡是遇到重复的事情，一定要找一个函数方法解决。tornado就提供了这么一个：<code>static_url()</code>,把上面的代码写成：</p>
+<pre><code>&lt;link href=&quot;{{ static_url(&quot;style.css&quot;) }}&quot; rel=&quot;stylesheet&quot; &gt;
+</code></pre><p>这样，就不管你如何修改静态路径，模板中的设置可以不用变。</p>
+<p>按照这个引入再修改相应的模板文件。</p>
+<h2 id="">一个项目框架</h2>
+<p>以上以及此前，我们所有写过的，都是简单的技术方法演示，如果要真的写一个基于tornado框架的网站，一般是不用这样的直接把代码都写到一个文件index.py中的，一个重要原因，就是这样做不容易以后维护，也不便于多人协作写一个项目。</p>
+<p>所以在真实的项目中，常常要将不同部件写在不同文件中。下面的例子就是一个项目的基本框架。当然，这还是一个比较小的项目，但是“麻雀虽小，五脏俱全”。</p>
+<p>创建一个文件夹，我给它命名为project，在这个文件里面分别创建下面的文件和目录，文件和目录里面的内容可以先不用管，“把式把式，先看架势”，先搭起项目结构来。</p>
+<ul>
+<li>文件<code>application.py</code>：这个文件的核心任务是完成<code>tornado.web.Application()</code>的实例化</li>
+<li>文件<code>url.py</code>：在这个文件中记录项目中所有URL和映射的类，即完成前面代码中<code>handlers=[...]</code>的功能</li>
+<li>文件<code>server.py</code>：这是项目的入口文件，里面包含<code>if __name__ == &quot;__main__&quot;</code>，从这里启动项目和服务</li>
+<li>目录handler：存放<code>.py</code>文件，即所谓各种请求处理类（当然，如果更大一些的项目，可能还要分配给别的目录来存储这种东西）</li>
+<li>目录optsql：存放操作数据库的文件，比如各种读取或者写入数据库的类或函数，都放在这里面的某些文件中</li>
+<li>目录static：存放静态文件，就是上文说的比如CSS，JS，图片等，为了更清晰，在这个目录里面，还可建立子目录，比如我就建立了：css,js,img三个子目录，分别对应上面的三种。</li>
+<li>目录template：存放<code>.html</code>的模板（在更大型的项目中，可能会设计多个目录来存放不同的模板，或者在里面再有子目录进行区分）</li>
+</ul>
+<p>以上就是我规划的一个项目的基本框架了。不同开发者根据自己的习惯，有不同的规划，或者有不同的命名，这没有关系。不过需要说明的，尽量使用名词（英文）。我看到过有人做过单复数之争论。我个人认为，这个无所谓，只要在一个项目中一贯就好了。我还是用单数吧，因为总忘记那个复数后面的s</p>
+<p>下面分别把不同部分文件的内容列出来，因为都是前面代码的重复，不过是做了一点从新部署，所以，就不解释了。个别地方有一点点说明。</p>
+<p>文件application.py的代码如下：</p>
+<pre><code>#!/usr/bin/env python
+#coding:utf-8
+
+from url import url
+
+import tornado.web
+import os
+
+setting = dict(
+    template_path=os.path.join(os.path.dirname(__file__),&quot;template&quot;),
+    static_path=os.path.join(os.path.dirname(__file__),&quot;static&quot;),
+    )
+
+application = tornado.web.Application(
+    handlers=url,
+    **setting
+    )
+</code></pre><p><code>from url import url</code>是从文件url.py引入内容</p>
+<p>下面看看url.py文件内容：</p>
+<pre><code>#!/usr/bin/env python
+#coding:utf-8
+
+import sys
+reload(sys)
+sys.setdefaultencoding(&#39;utf-8&#39;)
+
+from handler.index import IndexHandler
+
+url=[
+    (r&#39;/&#39;, IndexHandler),
+
+    ]
+</code></pre><p>在这个文件中，从<code>import sys</code>开始的三行，主要是为了解决如果文件里面有汉字，避免出现乱码。现在这个文件很简单，里面只有<code>(r&#39;/&#39;, IndexHandler)</code>一条URL，如果多条了，就要说明每条是什么用途，如果用中文写注释，需要避免乱码。</p>
+<p>以上两个预备好了，就开始写server.py，内容如下：</p>
+<pre><code>#!/usr/bin/env python
+#coding:utf-8
+
+import tornado.ioloop
+import tornado.options
+import tornado.httpserver
+
+import sys
+
+from application import application
+
+from tornado.options import define,options
+define(&quot;port&quot;,default=8888,help=&quot;run on th given port&quot;,type=int)
+
+def main():
+    tornado.options.parse_command_line()
+    http_server = tornado.httpserver.HTTPServer(application)
+    http_server.listen(options.port)
+    print &#39;Development server is running at http://127.0.0.1:%s/&#39; % options.port
+    print &#39;Quit the server with Control-C&#39;
+    tornado.ioloop.IOLoop.instance().start()
+
+if __name__==&quot;__main__&quot;:
+    main()
+</code></pre><p>这个就不需要解释了。接下来就看目录，首先在<code>static/css/</code>里面建立一个style.css的文件，并写样式表。我只写了下面的样式，这个样式的目的主要是去除浏览器默认的样式，在实际的工程项目中，这个步骤是非常必要的，一定要去除所有默认的样式，然后重新定义，才能便于控制。</p>
+<pre><code>html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+        display: block;
+}
+
+
+body {
+        /* standard body */
+        margin: 0 auto;
+        width: 960px;
+        font: 14px/20px &quot;Trebuchet MS&quot;, Verdana, Helvetica, Arial, sans-serif;
+}
+</code></pre><p>为了能够在演示的时候看出样式控制的变化，多写了一个对body的控制，居中且宽度为960px。</p>
+<p>样式表已经定义好，就要看<code>template/index.html</code>了，这个文件就是本项目中的唯一一个模板。</p>
+<pre><code>&lt;DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Loop in template&lt;/title&gt;
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;{{ static_url(&#39;css/style.css&#39;)}}&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;h1&gt;aaaAAA&lt;/h1&gt;
+    &lt;p&gt;There is a list, it is &lt;b&gt;{{info}}&lt;/b&gt;&lt;/p&gt;
+    &lt;p&gt;I will print the elements of this list in order.&lt;/p&gt;
+    {% for element in info %}
+        &lt;p&gt;{{element}}&lt;/p&gt;
+    {% end %}
+    &lt;br&gt;
+    {% for index,element in enumerate(info) %}
+        &lt;p&gt;info[{{index}}] is {{element}}
+        {% if element == &quot;python&quot; %}
+            &lt;p&gt; &lt;b&gt;I love this language--{{element}}&lt;/b&gt;&lt;/p&gt;
+        {% end %}
+    {% end %}
+
+    {% if &quot;qiwsir@gmail.com&quot; in info %}
+        &lt;p&gt;&lt;b&gt;A Ha, this the python lesson of LaoQi, It is good! His email is {{info[2]}}&lt;/b&gt;&lt;/p&gt;
+    {% end %}
+    &lt;h2&gt;Next, I set &quot;python-tornado&quot;(a string) to a variable(var)&lt;/h2&gt;
+    {% set var=&quot;python-tornado&quot; %}
+    &lt;p&gt;Would you like {{var}}?&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>在这个文件中，特别注意就是<code>&lt;link rel=&quot;stylesheet&quot; type=&#39;text/css&#39; href=&quot;{{ static_url(&#39;css/style.css&#39;)}}&quot;</code>,这里引入了前面定义的样式表文件。引入方式就是前文讲述的方式，不过由于是在css这个子目录里面，所以写了相对路径。</p>
+<p>行文到此，我原以为已经完成了。一检查，发现一个重要的目录<code>handler</code>里面还空着呢，那里面放index.py文件，这个文件里面是请求响应的类IndexHandler</p>
+<pre><code>#!/usr/bin/env python
+#coding:utf-8
+
+import tornado.web
+
+import sys
+reload(sys)
+sys.setdefaultencoding(&#39;utf-8&#39;)
+
+class IndexHandler(tornado.web.RequestHandler):
+    def get(self):
+        lst = [&quot;python&quot;,&quot;www.itdiffer.com&quot;,&quot;qiwsir@gmail.com&quot;]
+        self.render(&quot;index.html&quot;, info=lst)
+</code></pre><p>这个文件的代码没有什么增加的内容，只是多了三行设置为utf-8的配置，目的是避免汉字乱码。另外，很需要说明的是，由于这个文件在handler目录里面，要在上一层的url.py中引用（看url.py内容）,必须要在本目录中建立一个名称是<code>__init__.py</code>的空文。</p>
+<p>好了，基本结构已经完成。跑起来。效果就是这样的：</p>
+<p><img src="https://raw.githubusercontent.com/qiwsir/ITArticles/master/Pictures/31302.png" alt=""></p>
 
                     
                     </section>
@@ -1582,10 +1617,10 @@ you can connect me by qq\weibo\gmail
         </div>
 
         
-        <a href="./106.html" class="navigation navigation-prev " aria-label="Previous page: 初识永远强大的函数"><i class="fa fa-angle-left"></i></a>
+        <a href="./312.html" class="navigation navigation-prev " aria-label="Previous page: 模板中的语法：tornado模板中的for,if,set等语法，以{%开始，%}语句{%end%}"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./108.html" class="navigation navigation-next " aria-label="Next page: 玩转字符串(2)"><i class="fa fa-angle-right"></i></a>
+        <a href="./index.html" class="navigation navigation-next " aria-label="Next page: 扩展阅读(来自网络文章)"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

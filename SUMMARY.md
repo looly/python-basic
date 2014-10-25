@@ -1,6 +1,5 @@
 # Summary
 
-* [Introduction](README.md)
 * [第零部分 独上高楼，望尽天涯路](README.md)
    * [唠叨一些关于python的事情](001.md)
    * [开始本栏目的原因](README.md)
@@ -74,6 +73,7 @@
    * [实例分析get和post：get()通过URL得到数据和post()通过get_argument()获取数据](308.md)
    * [问候世界：利用GAE建立tornado框架网站](309.md)
    * [使用表单和模板:tornado模板self.render和模板变量传递](311.md)
-   * [模板中的语法：tornado模板中的for,if,set等语法，以{%开始，%}语句{%end%}](312.md)
+   * [模板中的语法：tornado模板中的for,if,set等语法，以{%开始，%}语句{%end%}](312.md)* 
+   * [静态文件以及一个项目框架](313.md)
 * [扩展阅读(来自网络文章)](README.md)
    * [人生苦短，我用Python](reading/01.md)
