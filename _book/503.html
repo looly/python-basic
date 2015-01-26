@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>实例分析get和post：get()通过URL得到数据和post()通过get_argument()获取数据 | 声明</title>
+        <title>常用的内建函数 | 声明</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -18,10 +18,10 @@
     
     
     
-    <link rel="next" href="./309.html" />
+    <link rel="next" href="./blank.html" />
     
     
-    <link rel="prev" href="./307.html" />
+    <link rel="prev" href="./502.html" />
     
 
         
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="3.8" data-basepath="." data-revision="1422242220225">
+    <div class="book"  data-level="5.3" data-basepath="." data-revision="1422242220225">
     
 
 <div class="book-summary">
@@ -1188,7 +1188,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="3.8" data-path="308.html">
+        <li class="chapter " data-level="3.8" data-path="308.html">
             
                 
                     <a href="./308.html">
@@ -1408,7 +1408,7 @@
         </li>
     
         
-        <li class="chapter " data-level="5.3" data-path="503.html">
+        <li class="chapter active" data-level="5.3" data-path="503.html">
             
                 
                     <a href="./503.html">
@@ -1555,142 +1555,287 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_74">
+                    <section class="normal" id="section-gitbook_86">
                     
-                        <blockquote>
-<p>&quot;Do not store up for yourselves treasures on earth, where moth and rust consume and where thieves break in and steal; but store up for yourselves treasures in heaven, where neither moth and rust consumes and where thieves do not break in and steal. For where your treasure is, there your heart will be also.&quot; (MATTHEW6:19-21)</p>
-</blockquote>
-<h1 id="getpost">探析get和post方法</h1>
-<p>在开发网站的过程中，post和get是常见常用的两个方法，关于这两个方法的详细解释，请列为阅读这篇文章：<a href="https://github.com/qiwsir/ITArticles/blob/master/Tornado/DifferenceHttpGetPost.md" target="_blank">《HTTP POST GET 本质区别详解》</a>，这篇文章前面已经推荐阅读了，可以这么说，如果看官没有搞明白get和post，也可以写出web程序，但是，只要遇到“但是”，就说明另有乾坤，但是如果看官要对这方面有深入理解，并且将来能上一个档次，是必须了解的。这就如同你要练习辟邪剑谱中的剑法，不自宫，也可以练，但是无法突破某个极限，岳不群也不傻，最终他要成为超一流，就不惜按照剑谱中开篇所说“欲练神功，挥刀自宫”，“神功”是需要“自宫”为前提，否则，练出来的不是“神功”，无法问鼎江湖。</p>
-<p>特别提醒，看官不要自宫，因为本教程不是辟邪剑谱，也不是葵花宝典，撰写本课程的人更是生理健全者。若看官自宫了，责任自负，与本作者无关。直到目前，科学上尚未有证实或证伪自宫和写程序之间是否存在某种因果关系。所以提醒看官慎重行事。</p>
-<p>还是扯回来，看下面的代码先：</p>
-<pre><code>#!/usr/bin/env python
-#coding:utf-8
-
-import textwrap
-
-import tornado.httpserver
-import tornado.ioloop
-import tornado.options
-import tornado.web
-
-from tornado.options import define, options
-define(&quot;port&quot;, default=8000, help=&quot;Please send email to me&quot;, type=int)
-
-class ReverseHandler(tornado.web.RequestHandler):
-    def get(self, input_word):
-        self.write(input_word[::-1])
-
-class WrapHandler(tornado.web.RequestHandler):
-    def post(self):
-        text = self.get_argument(&quot;text&quot;)
-        width = self.get_argument(&quot;width&quot;, 40)
-        self.write(textwrap.fill(text, width))
-
-if __name__ == &quot;__main__&quot;:
-    tornado.options.parse_command_line()
-    app = tornado.web.Application(
-        handlers = [
-            (r&quot;/reverse/(\w+)&quot;, ReverseHandler),
-            (r&quot;/wrap&quot;, WrapHandler)
-        ]
-    )
-    http_server = tornado.httpserver.HTTPServer(app)
-    http_server.listen(options.port)
-    tornado.ioloop.IOLoop.instance().start()
-</code></pre><p>这段代码跟上一讲的代码相比，基本结构是一样的，但是在程序主体中，这次写了两个类<code>ReverseHandler</code>和<code>WrapHandler</code>，这两个类中分别有两个方法get()和post()。在<code>tornado.web.Application()</code>实例化中，handlers的参数值分别设置了不同路径对应这两个类。</p>
-<p>其它方面跟上一讲的代码一样。</p>
-<p>把上述代码的文件，存到某个目录下，我给他取名为:request_url.py，名字看官也可以自己定。然后进入该目录，运行：<code>python request_url.py</code>，就将这个tornado框架的网站以端口8000发布了。</p>
-<p>打开网页，在浏览器中输入：<code>http://localhost:8000/reverse/qiwsirpython</code></p>
-<p>界面上输出什么结果？</p>
-<p><img src="https://raw.githubusercontent.com/qiwsir/ITArticles/master/Pictures/30801.png" alt=""></p>
-<p>还可以在命令终端，用下面方式调试，跟在网页上输出是等同效果。</p>
-<pre><code>qw@qw-Latitude-E4300:~$ curl http://localhost:8000/reverse/qiwsirpython
-nohtypriswiq
-</code></pre><p>再看另外一个路径，看官运行的是否是下面的结果呢？</p>
-<pre><code>qw@qw-Latitude-E4300:~$ curl http://localhost:8000/wrap -d text=I+love+Python+programming+and+I+am+writing+python+lessons+on+line
-I love Python programming and I am
-writing python lessons on line
-</code></pre><p>调试通过，就开始分析其中的奥妙。</p>
-<h2 id="get">get()</h2>
-<p>在ReverseHandler类中，定义了这个方法。</p>
-<pre><code>class ReverseHandler(tornado.web.RequestHandler):
-    def get(self, input_word):
-        self.write(input_word[::-1])
-</code></pre><p>这个get()方法要和下面Application实例化中的路径：</p>
-<pre><code>(r&quot;/reverse/(\w+)&quot;, ReverseHandler),
-</code></pre><p>关联起来看。</p>
-<p>首先看路径设置：<code>r&quot;/reverse/(\w+)&quot;</code>，这个路径的意思就是可以在浏览器的url中输入：<a href="http://localhost:8000/reverse/dddd，这个样子的地址，注意路径中的`(\w+)`，是正则表达式，在reverse/的后面可以输入一个或者多个包括下划线的任何单词字符。也就是dddd可以更换为任何其它字母或者下划线，一个或者多个均可以。" target="_blank">http://localhost:8000/reverse/dddd，这个样子的地址，注意路径中的`(\w+)`，是正则表达式，在reverse/的后面可以输入一个或者多个包括下划线的任何单词字符。也就是dddd可以更换为任何其它字母或者下划线，一个或者多个均可以。</a></p>
-<p>在URL中输入的这个地址，就被ReverseHandler类中的get()方法接收，这就是<code>(r&quot;/reverse/(\w+)&quot;, ReverseHandler)</code>之含义了。那么，ReverseHandler中的get()方法如何接收url中传递过来的信息呢？</p>
-<p>前文已经说过，在<code>def get(self, input_word)</code>中，self参数在类实例化后对应的是tornado.web.RequestHandler，另外一个参数input_word用来接收来自url的信息，但是它只接收所设置的路径尾部数据，也就是路径<code>r&quot;/reverse/(\w+)&quot;</code>中reverse后面的第一个分割符号“/”之后的内容，都被input_word接收过来，即正则表达式的内容。</p>
-<p>input_word接收过来的对象，是什么类型呢？猜测一下，从前面程序的运行结果看，肯定是某种序列类型的对象。具体是哪种呢？可以实验。</p>
-<p>将get方法修改为：</p>
-<pre><code>def get(self, input_word):
-    input_type = type(input_word)
-    self.write(&quot;%s&quot;%input_type)
-</code></pre><p>再运行程序，打印出来的是：</p>
-<pre><code>qw@qw-Latitude-E4300:~$ curl http://localhost:8000/reverse/qiwei
-&lt;type &#39;unicode&#39;&gt;
-</code></pre><p>这说明，get()方法通过URL接收到的数据类型是unicode编码的字符，即字符串。</p>
-<p>原来类方法中的<code>self.write(input_word[::-1])</code>含义是，将原来的字符串倒置，并返回该数据到客户端（如页面）。</p>
-<pre><code>&gt;&gt;&gt; a = &quot;python,laoqi&quot;
-&gt;&gt;&gt; a[::-1]
-&#39;iqoal,nohtyp&#39;
-&gt;&gt;&gt; b = [1,2,3,4]
-&gt;&gt;&gt; b[::-1]
-[4, 3, 2, 1]
-&gt;&gt;&gt; c = (&quot;a&quot;,&quot;b&quot;,&quot;c&quot;)
-&gt;&gt;&gt; c[::-1]
-(&#39;c&#39;, &#39;b&#39;, &#39;a&#39;)
-</code></pre><p>这是一种将序列类型对象倒置的一种方法。</p>
-<p>总结一下：get()通过第二个参数，获得已经设置的显示路径中最后一个/后面的数据，并且为unincode编码的字符。</p>
-<p>这种方式通过URL得到有关数据，也就是说在URL中，只需要以<code>http://localhost/aaa/bbb/ccc</code>的形式来显示路径即可。看官是否注意到，有的网站是这么显示的：<code>http://localhost/aaa?name=Tom&amp;&amp;?age=25</code>，这其实是两种不同的规范也好、方法也罢的东西，前者更接近时下流行的REST规范，可能看官听说过MVC吧，我听不少的公司都强调网站要符合MVC规范，殊不知，更流行的是REST了。那么到底那个好呢？我的观点：It depends.如果有兴趣，请阅读：<a href="https://github.com/qiwsir/ITArticles/blob/master/Tornado/understandREST.md" target="_blank">《理解本真的REST架构风格》</a>，对REST了解一二。</p>
-<h2 id="post">post()方法</h2>
-<p>post()也是web上常用的方法，在本例中，该方法写在了WrapHandler类中：</p>
-<pre><code>class WrapHandler(tornado.web.RequestHandler):
-    def post(self):
-        text = self.get_argument(&quot;text&quot;)
-        width = self.get_argument(&quot;width&quot;, 40)
-        self.write(textwrap.fill(text, width))
-</code></pre><p>对应的Application类路径：</p>
-<pre><code>(r&quot;/wrap&quot;, WrapHandler)
-</code></pre><p>但是，看官要注意，post()无法从URL中获得数据。这是跟get()方法非常不一样的。关于get和post之间的区别，请看官点击<a href="https://github.com/qiwsir/ITArticles/blob/master/Tornado/DifferenceHttpGetPost.md" target="_blank">《HTTP POST GET 本质区别详解》</a>阅读。</p>
-<p>客户端的数据通过post方法发送到服务器，这个内在过程就是由所谓HTTP协议完成，不用去管它，因为现在我们只是研究应用层，不去深入网络协议的层面。看官可以有这样的以为：怎么传的数据，但是我也可以不讲，就算我也不会吧。不过，如果看官非要了解，请问google大神。</p>
-<p>我要解释的是，post()方法怎么接收到客户端传过来的数据。</p>
-<p>因为post不能从URL中得到数据，所以就不能用类似的方式在网页的url中输入要传给它的数据了，只能这样来测试：</p>
-<pre><code>qw@qw-Latitude-E4300:~$ curl http://localhost:8000/wrap -d text=I+love+Python+programming+and+I+am+writing+python+lessons+on+line
-I love Python programming and I am
-writing python lessons on line
-</code></pre><p>请看官注意，URL依然是<code>http://localhost:8000/wrap</code>，后面的部分<code>-d text=...</code>，就是向这个地址对应的类WrapHandler中的post方法传送相应的数据，这个数据被<code>tornado.web.RequestHandler</code>中的get_arugment()方法获得，也就是通过<code>text=self.get_argument(&quot;text&quot;)</code>得到传过来的对象，并赋值给text。</p>
-<p>这里需要提醒看官注意，<code>self.get_argument(&quot;text&quot;)</code>的参数中，是<code>&quot;text&quot;</code>，就意味着，传入数据的时候，需要用text这个变量，即必须写成<code>text=...</code>。如果<code>self.get_argument(&quot;word&quot;)</code>，那么就应该是<code>word=...</code>方式传入数据了。</p>
-<p>看官此时是否已经晓得，get_argument()在post方法中，能够获得客户端传过来的数据，当然是unicode编码的。得到这个数据之后，就可以按照自己的需要进行操作了。</p>
-<p>下一句<code>width = self.get_argumen(&quot;width&quot;, 40)</code>是要返回一个对象，这个对象约定变量为40，并将它用在下面的<code>textwrap.fill(text, width)</code>中。这里并没有什么特别支出，也可以写成<code>width = 40</code>，其实就是给textwrap.fill()提供参数罢了。关于textwrap模块中的fill方法，可以用help命令来看看。</p>
-<pre><code>&gt;&gt;&gt; import textwrap
-&gt;&gt;&gt; help(textwrap.fill)
-
-Help on function fill in module textwrap:
-
-fill(text, width=70, **kwargs)
-    Fill a single paragraph of text, returning a new string.
-
-    Reformat the single paragraph in &#39;text&#39; to fit in lines of no more
-    than &#39;width&#39; columns, and return a new string containing the entire
-    wrapped paragraph.  As with wrap(), tabs are expanded and other
-    whitespace characters converted to space.  See TextWrapper class for
-    available keyword args to customize wrapping behaviour.
-</code></pre><h2 id="requesthandler">简要总结RequestHandler</h2>
-<p>RequestHandler就是请求处理程序的方法，从上面的流程中，可以简要地初步地认为（深奥的东西还不少，这里只能是简要地初步地肤浅地，随着学习的深入会一点点深入地）：</p>
-<ul>
-<li>通过<code>self.write()</code>向客户端返回数据</li>
-<li>get()中，以一个参数从URL路径末尾获取数据，特别提醒看官，这是在本讲的例子中，get()方法中，用第二个参数获得url数据。在<a href="307.html">上一讲</a>中，同样是get()方法，用到了<code>greeting = self.get_argument(&#39;greeting&#39;, &#39;Hello&#39;)</code>，于是不需要在get()中另外写参数，只需要通过&quot;greeting&quot;就可以得到URL中的数据，不过这时候的url应该写成<code>http://localhost:8000/?greeting=PYTHON</code>的样式，于是字符传&#39;PYTHON&#39;就能够让get()中的<code>self.get_argument(&#39;greeting&#39;,&#39;Hello&#39;)</code>获得，如果没有，就是&#39;Hello&#39;。</li>
-<li>post()中，以<code>sel.argument(&quot;text&quot;)</code>的形式得到<code>text</code>为标签提交的数据。</li>
-</ul>
-<p>get和post是http中用的最多的方法啦。此外，Tornado也还支持其它的HTTP请求，如：PUT、DELETE、HEAD、OPTIONS。在具体编程的时候，如果看官用到，可以搜索，一般用的不多。</p>
-<p>最后交代一句，get和post方法，由于一个是通过URL得到数据，另外一个不是，所以，他们可以写到同一个类中，彼此互不干扰。</p>
-<p>还要说明，我在这部分参考了一本书的讲授内容，特别是其中的代码例子，这本书就是<a href="http://it-ebooks.info/book/687/" target="_blank">《Introduction to Tornado》</a></p>
-<hr>
-
-<p><a href="https://github.com/qiwsir/ITArticles/blob/master/BasicPython/index.md" target="_blank">首页</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="https://github.com/qiwsir/ITArticles/blob/master/BasicPython/307.md" target="_blank">上一讲：Hello,第一个网页分析</a></p>
+                        <h1 id="">一些重要的内建函数</h1>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abs(number)</td>
+<td>返回一个数的绝对值</td>
+</tr>
+<tr>
+<td>apply(function[, args[, kwds]])</td>
+<td>调用给定函数，可选择提供参数</td>
+</tr>
+<tr>
+<td>all(iterable)</td>
+<td>如果所有iterable的元素均为真则返回True, 否则返回False</td>
+</tr>
+<tr>
+<td>any(iterable)</td>
+<td>如果有任一iterable的元素为真则返回True，否则返回False</td>
+</tr>
+<tr>
+<td>basestring()</td>
+<td>str和unicode抽象超类，用于检查类型</td>
+</tr>
+<tr>
+<td>bool(object)</td>
+<td>返回True或False，取决于Object的布尔值</td>
+</tr>
+<tr>
+<td>callable(object)</td>
+<td>检查对象是否可调用</td>
+</tr>
+<tr>
+<td>chr(number)</td>
+<td>返回ASCII码为给定数字的字符</td>
+</tr>
+<tr>
+<td>classmethod(func)</td>
+<td>通过一个实例方法创建类的方法</td>
+</tr>
+<tr>
+<td>cmp(x, y)</td>
+<td>比较x和y——如果x<y，则返回负数；如果x>y则返回证书；如果x==y，返回0</td>
+</tr>
+<tr>
+<td>complex(real[, imag])</td>
+<td>返回给定实部（以及可选的虚部）的复数</td>
+</tr>
+<tr>
+<td>delattr(object, name)</td>
+<td>从给定的对象中删除给定的属性</td>
+</tr>
+<tr>
+<td>dict([mapping-or-sequence])</td>
+<td>构造一个字典，可选择从映射或（键、值）对组成的列表构造。<br>也可以使用关键字参数调用。</td>
+</tr>
+<tr>
+<td>dir([object])</td>
+<td>当前可见作用于域的（大多数）名称的列表，<br>或者是选择性地列出给定对象的（大多数）特性</td>
+</tr>
+<tr>
+<td>divmod(a, b)</td>
+<td>返回(a//b, a%b)（float类型有特殊规则）</td>
+</tr>
+<tr>
+<td>enumerate(iterable)</td>
+<td>对iterable中的所有项迭代（索引，项目）对</td>
+</tr>
+<tr>
+<td>eval(string[, globals[, locals]])</td>
+<td>对包含表达式的字符串进行计算。<br>可选择在给定的全局作用域或者局部作用域中进行</td>
+</tr>
+<tr>
+<td>execfile(file[, globals[, locals]])</td>
+<td>执行一个python文件，<br>可选在给定全局作用域或者局部作用域中进行</td>
+</tr>
+<tr>
+<td>file(filename[, mode[, bufsize]])</td>
+<td>创建给定文件名的文件，<br>可选择使用给定的模式和缓冲区大小</td>
+</tr>
+<tr>
+<td>filter(function, sequence)</td>
+<td>返回给定序列中函数返回值的元素的列表</td>
+</tr>
+<tr>
+<td>float(object)</td>
+<td>将字符串或者数值转换为float类型</td>
+</tr>
+<tr>
+<td>frozenset([iterable])</td>
+<td>创建一个不可变集合，这意味着不能将添加到其它集合中</td>
+</tr>
+<tr>
+<td>getattr(object, name[, default])</td>
+<td>返回给定对象中所指定的特性的值，可选择给定默认值</td>
+</tr>
+<tr>
+<td>globals()</td>
+<td>返回表示当前作用域的字典</td>
+</tr>
+<tr>
+<td>hasattr(object, name)</td>
+<td>检查给定的对象是否有指定的属性</td>
+</tr>
+<tr>
+<td>help([object])</td>
+<td>调用内建的帮助系统，或者打印给定对象的帮助信息</td>
+</tr>
+<tr>
+<td>id(number)</td>
+<td>返回给定对象的唯一ID</td>
+</tr>
+<tr>
+<td>input([prompt])</td>
+<td>等同于eval(raw_input(prompt)</td>
+</tr>
+<tr>
+<td>int(object[, radix])</td>
+<td>将字符串或者数字（可以提供基数）转换为整数</td>
+</tr>
+<tr>
+<td>isinstance(object, classinfo)</td>
+<td>检查给定的对象object是否是给定的classinfo值的实例，<br>classinfo可以是类对象、类型对象或者类对象和类型对象的元组</td>
+</tr>
+<tr>
+<td>issubclass(class1, class2)</td>
+<td>检查class1是否是class2的子类（每个类都是自身的子类）</td>
+</tr>
+<tr>
+<td>iter(object[, sentinel])</td>
+<td>返回一个迭代器对象，可以是用于迭代序列的object<em>iter()迭代器<br>（如果object支持_getitem</em>方法的话），或者提供一个sentinel，<br>迭代器会在每次迭代中调用object，直到返回sentinel</td>
+</tr>
+<tr>
+<td>len(object)</td>
+<td>返回给定对象的长度（项的个数）</td>
+</tr>
+<tr>
+<td>list([sequence])</td>
+<td>构造一个列表，可选择使用与所提供序列squence相同的项</td>
+</tr>
+<tr>
+<td>locals()</td>
+<td>返回表示当前局部作用域的字典（不要修改这个字典）</td>
+</tr>
+<tr>
+<td>long(object[, radix])</td>
+<td>将字符串（可选择使用给定的基数radix）或者数字转化为长整型</td>
+</tr>
+<tr>
+<td>map(function, sequence, ...)</td>
+<td>创建由给定函数function应用到所提供列表sequence每个项目时返回的值组成的列表</td>
+</tr>
+<tr>
+<td>max(object1, [object2, ...])</td>
+<td>如果object1是非空序列，那么就返回最大的元素。<br>否则返回所提供参数（object1,object2...）的最大值</td>
+</tr>
+<tr>
+<td>min(object1, [object2, ...])</td>
+<td>如果object1是非空序列，那么就返回最小的元素。<br>否则返回所提供参数（object1,object2...）的最小值</td>
+</tr>
+<tr>
+<td>object()</td>
+<td>返回所有新式类的技术Object的实例</td>
+</tr>
+<tr>
+<td>oct(number)</td>
+<td>将整型数转换为八进制表示的字符串</td>
+</tr>
+<tr>
+<td>open(filename[, mode[, bufsize]])</td>
+<td>file的别名（在打开文件的时候使用open而不是file</td>
+</tr>
+<tr>
+<td>ord(char)</td>
+<td>返回给定单字符（长度为1的字符串或者Unicode字符串）的ASCII值</td>
+</tr>
+<tr>
+<td>pow(x, y[, z])</td>
+<td>返回x的y次方，可选择模除z</td>
+</tr>
+<tr>
+<td>property([fget[, fset[, fdel[, doc]]]])</td>
+<td>通过一组访问器创建属性</td>
+</tr>
+<tr>
+<td>range([start, ]stop[, step])</td>
+<td>使用给定的起始值（包括起始值，默认为0）和结束值（不包括）<br>以及步长（默认为1）返回数值范围（以列表形式）</td>
+</tr>
+<tr>
+<td>raw_input([prompt])</td>
+<td>将用户输入的数据作为字符串返回，可选择使用给定的提示符prompt</td>
+</tr>
+<tr>
+<td>reduce(function, sequence[, initializer])</td>
+<td>对序列的所有渐增地应用于给定的函数，<br>使用累积的结果作为第一个参数，<br>所有的项作为第二个参数，可选择给定的起始值（initializer）</td>
+</tr>
+<tr>
+<td>reload(module)</td>
+<td>重载入一个已经载入的模块并将其返回</td>
+</tr>
+<tr>
+<td>repr(object)</td>
+<td>返回表示对象的字符串，一般作为eval的参数使用</td>
+</tr>
+<tr>
+<td>reversed(sequence)</td>
+<td>返回序列的反向迭代器</td>
+</tr>
+<tr>
+<td>round(float[, n])</td>
+<td>将给定的浮点数四舍五入，小数点后保留n位（默认为0）</td>
+</tr>
+<tr>
+<td>set([iterable)</td>
+<td>返回从iterable（如果给出）生成的元素集合</td>
+</tr>
+<tr>
+<td>setattr(object, name, value)</td>
+<td>设定给定对象的指定属性的值为给定的值</td>
+</tr>
+<tr>
+<td>sorted(iterable[, cmp][,key][, reverse])</td>
+<td>从iterable的项目中返回一个新的排序后的列表。<br>可选的参数和列表方法与sort中的相同</td>
+</tr>
+<tr>
+<td>staticmethod(func)</td>
+<td>从一个实例方法创建静态（类）方法</td>
+</tr>
+<tr>
+<td>str(object)</td>
+<td>返回表示给定对象object的格式化好的字符串</td>
+</tr>
+<tr>
+<td>sum(seq[, start])</td>
+<td>返回添加到可选参数start（默认为0）中的一系列数字的和</td>
+</tr>
+<tr>
+<td>super(type[, obj/type)</td>
+<td>返回给定类型（可选为实例化的）的超类</td>
+</tr>
+<tr>
+<td>tuple([sequence])</td>
+<td>构造一个元祖，可选择使用同提供的序列sequence一样的项</td>
+</tr>
+<tr>
+<td>type(object)</td>
+<td>返回给定对象的类型</td>
+</tr>
+<tr>
+<td>type(name, base, dict)</td>
+<td>使用给定的名称、基类和作用域返回一个新的类型对象</td>
+</tr>
+<tr>
+<td>unichr(number)</td>
+<td>chr的Unicode版本</td>
+</tr>
+<tr>
+<td>unicode(object[, encoding[, errors]])</td>
+<td>返回给定对象的Unicode编码版本，可以给定编码方式和处理错误的模式<br>（&#39;strict&#39;、&#39;replace&#39;或者&#39;ignore&#39;，&#39;strict&#39;为默认模式）</td>
+</tr>
+<tr>
+<td>vars([object])</td>
+<td>返回表示局部作用域的字典，或者对应给定对象特性的字典</td>
+</tr>
+<tr>
+<td>xrange([start, ]stop[, step])</td>
+<td>类似于range，但是返回的对象使用内存较少，而且只用于迭代</td>
+</tr>
+<tr>
+<td>zip(sequence1, ...)</td>
+<td>返回元组的列表，每个元组包括一个给定序列中的项。<br>返回的列表的长度和所提供的序列的最短长度相同</td>
+</tr>
+</tbody>
+</table>
 
                     
                     </section>
@@ -1701,10 +1846,10 @@ fill(text, width=70, **kwargs)
         </div>
 
         
-        <a href="./307.html" class="navigation navigation-prev " aria-label="Previous page: Hello,第一个网页分析：tornado网站的基本结构剖析：improt模块、RequestHandler, HTTPServer, Application, IOLoop"><i class="fa fa-angle-left"></i></a>
+        <a href="./502.html" class="navigation navigation-prev " aria-label="Previous page: 运算符"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./309.html" class="navigation navigation-next " aria-label="Next page: 问候世界：利用GAE建立tornado框架网站"><i class="fa fa-angle-right"></i></a>
+        <a href="./blank.html" class="navigation navigation-next " aria-label="Next page: 扩展阅读(来自网络文章)"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
