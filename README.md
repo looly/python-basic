@@ -1,6 +1,8 @@
 # 声明
 
-这个“零基础学Python”并不是我写的，原内容来自于[这里](https://github.com/qiwsir/ITArticles/blob/master/BasicPython/index.md)，我只是将其Github的MarkDown内容整理成了Gitbook格式方便阅读，如果有相关版权问题请联系我，我会删除。
+这个“零基础学Python”并不是我写的，原内容来自于[这里](https://github.com/qiwsir/ITArticles/blob/master/BasicPython/index.md)，我只是将其Github的MarkDown内容整理成了Gitbook格式方便阅读。
+
+我已经联系作者qiwsir，同意我整理，欢迎大家多多支持原作者。
 
 原作者：老齐（qiwsir）
 
