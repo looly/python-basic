@@ -1,3 +1,4 @@
+![cover](https://raw.githubusercontent.com/looly/python-basic/master/cover_small.jpg)
 # 声明
 
 这个“零基础学Python”并不是我写的，原内容来自于[这里](https://github.com/qiwsir/ITArticles/blob/master/BasicPython/index.md)，我只是将其Github的MarkDown内容整理成了Gitbook格式方便阅读。
